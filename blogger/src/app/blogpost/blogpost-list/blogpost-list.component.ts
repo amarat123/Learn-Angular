@@ -9,20 +9,18 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./blogpost-list.component.css']
 })
 
-@Injectable({
-  providedIn: 'root' // just before your class
-})
 
-export class BlogpostListComponent implements OnInit {
+
+export class BlogpostListComponent  {
 
   title:string = 'Blogs';
-  //blogs = Blogpost;
+  blogs :any;
   error = {};
 
   constructor(
     private titleServise : Title,
     private blogpostService : BlogpostService,
-    private blogs: Blogpost
+    //private blogs: Blogpost
   ) {
 
     
@@ -32,25 +30,22 @@ export class BlogpostListComponent implements OnInit {
   ngOnInit(): void {
 
     this.titleServise.setTitle(this.title); 
+    this.getAllBlogs();
+  }
+
+  getAllBlogs() {
+
     /*
     this.blogpostService.getBlogs().subscribe(
       (data: Blogpost) => this.blogs = data,
       error => this.error = error
     );
     */
-   
-    if (this.blogs) {
-      this.blogpostService.getBlogs()
-        .subscribe((data: Blogpost) => this.blogs = data)
-    }
-    
-    
-    
-   
+    this.blogpostService.getBlogs().subscribe( 
+      (data: Blogpost) => this.blogs = data
+    )
 
   }
-
-  
 
 
 
