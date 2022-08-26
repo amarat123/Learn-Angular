@@ -1,9 +1,5 @@
 export class Blogpost {
     
-    param1: string;
-    
-
-    /*
     constructor(
         id: number,
         title: string,
@@ -12,9 +8,8 @@ export class Blogpost {
         image: string,
         created_at: Date,
     ) {
-        
 
      }
-     */
+     
 
 }

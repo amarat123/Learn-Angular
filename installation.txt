@@ -1,0 +1,12 @@
+
+
+
+1. Intsall node js from official website (https://nodejs.org/en/)
+2. Set nodejs via command
+	SET PATH=C:\Program Files\Nodejs;%PATH%
+3. check	node version (node -v)
+4. check	nmp version (node -v)
+4. Install angula cli (npm install -g @angular/cli)
+5. set global (Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned)
+5. Check angular version (ng version) 
+

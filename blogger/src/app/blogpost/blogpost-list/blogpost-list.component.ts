@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable  } from '@angular/core';
 import { BlogpostService } from '../blogpost.service';
 import { Blogpost } from '../blogpost';
 import { Title } from '@angular/platform-browser';
@@ -8,18 +8,26 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './blogpost-list.component.html',
   styleUrls: ['./blogpost-list.component.css']
 })
+
+@Injectable({
+  providedIn: 'root' // just before your class
+})
+
 export class BlogpostListComponent implements OnInit {
 
   title:string = 'Blogs';
-  blogs : Array<object> = Blogpost;
-
   //blogs = Blogpost;
   error = {};
 
   constructor(
     private titleServise : Title,
-    private blogpostService : BlogpostService
-  ) { }
+    private blogpostService : BlogpostService,
+    private blogs: Blogpost
+  ) {
+
+    
+   }
+
 
   ngOnInit(): void {
 
@@ -29,12 +37,21 @@ export class BlogpostListComponent implements OnInit {
       (data: Blogpost) => this.blogs = data,
       error => this.error = error
     );
-     */
+    */
+   
+    if (this.blogs) {
+      this.blogpostService.getBlogs()
+        .subscribe((data: Blogpost) => this.blogs = data)
+    }
     
-    this.blogpostService.getBlogs()
-    of().subscribe((data: Blogpost) => this.blogs = data,
-  );
+    
+    
+   
 
   }
+
+  
+
+
 
 }
