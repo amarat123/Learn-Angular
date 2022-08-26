@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Blogpost } from './blogpost';
+import { Category } from './category';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -25,6 +26,18 @@ export class BlogpostService {
       catchError(this.handleError)
     )
   }
+
+  getRecentBlogs() {
+    return this.http.get<Blogpost>(this.ServerUrl + 'api/recent_blogs').pipe(
+      catchError(this.handleError)
+    );
+}
+
+getCategories() {
+    return this.http.get<Category>(this.ServerUrl + 'api/categories').pipe(
+      catchError(this.handleError)
+    );
+}
 
 
 
