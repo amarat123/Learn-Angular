@@ -27,6 +27,12 @@ export class BlogpostService {
     )
   }
 
+  getBlog(id: number) {
+    return this.http.get<Blogpost>(this.ServerUrl + 'api/blog/' + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getRecentBlogs() {
     return this.http.get<Blogpost>(this.ServerUrl + 'api/recent_blogs').pipe(
       catchError(this.handleError)

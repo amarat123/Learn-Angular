@@ -9,13 +9,16 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a routerLink="/" routerLinkActive="ative" class="nav-link" href="index.html">Home</a>
+            <a routerLink="/" routerLinkActive="ative" class="nav-link" (click)="setPageTitle('Blogger')">Home</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/page/about" routerLinkActive="ative" class="nav-link" href="about.html">About</a>
+            <a routerLink="/page/about" routerLinkActive="ative" class="nav-link" (click)="setPageTitle('About')">About</a>
           </li>
           <li class="nav-item">
-            <a routerLink="/contact" routerLinkActive="ative" class="nav-link" href="contact.html">Contact</a>
+            <a routerLink="/page/services" routerLinkActive="ative" class="nav-link" (click)="setPageTitle('Services')">Services</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/contact" routerLinkActive="ative" class="nav-link" (click)="setPageTitle('Contact')">Contact</a>
           </li>
           <li class="nav-item">
             <a routerLink="/blog" routerLinkActive="ative" class="nav-link" href="bloglist.html">Blog</a>

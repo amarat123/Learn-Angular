@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { CmspageService } from '../cmspage.service';
+import { Page } from '../page';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page',
@@ -7,9 +11,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageComponent implements OnInit {
 
-  constructor() { }
+  //page: Page;
+  page: any;
+  error: {};
+  //error: any;
+
+  pageSlug : any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private cmspageService: CmspageService
+  ) { }
 
   ngOnInit(): void {
+    this.getPageDetail();
   }
+
+  getPageDetail(){
+    /*
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.cmspageService.getPage(params.get('slug'))
+      )
+    ).subscribe(
+      (data: Page) => this.page = data,
+      error => this.error = error
+    );
+    */
+    this.pageSlug  = this.router.url.split('/').pop();  
+    this.cmspageService.getPage(this.pageSlug).subscribe( 
+      (data: Page) => this.page = data
+    )
+
+      console.log('page_detail',this.page)
+
+  }
+
 
 }
