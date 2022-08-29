@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ContactFormComponent implements OnInit {
 
-  //model = new Contact();
-  model : any;
+  model = new Contact();
+  //model : any;
   submitted  = false;
   error = {};
 
@@ -25,11 +25,22 @@ export class ContactFormComponent implements OnInit {
 
   onSubmit(){
     this.submitted = true;
+    console.log('test', this.model);
 
-    return this.cmspageService.contactForm(this.model).subscribe(
-      data => this.model = data,
-      error => this.error = error
-    );
+    // return this.cmspageService.contactForm(this.model).subscribe(
+    //   data => this.model = data,
+    //   error => this.error = error
+    // );
+
+
+    return this.cmspageService.contactForm(this.model).subscribe({
+      complete: () => { data => this.model = data }, // completeHandler
+      error: () => { error => this.error = error },    // errorHandler 
+      //next: () => { ... },     // nextHandler
+    });
+
+
+
 
   }
 

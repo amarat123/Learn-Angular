@@ -6,8 +6,7 @@ export class Contact {
         email: string = '',
         message: string = '',
         phone?: string
-
-        
+       
     ){
 
         //this.id = 1; //Specify default value
