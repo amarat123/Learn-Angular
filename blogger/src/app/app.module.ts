@@ -13,6 +13,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { AdminModule } from './admin/admin.module';
+import { AuthModule } from './auth/auth.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +29,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     BlogpostModule,
     CmspageModule,
+    AdminModule,
+    AuthModule,
     AppRoutingModule
   ],
   providers: [Title],
