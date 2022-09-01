@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Blogpost } from './blogpost';
 import { Category } from './category';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpBackend } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -13,7 +13,10 @@ export class BlogpostService {
   ServerUrl = 'http://localhost/dev/blogger/';
   errorData = {};
 
-  constructor(private http: HttpClient) { }
+  private http: HttpClient;
+  constructor(handler: HttpBackend) { 
+    this.http = new HttpClient(handler);
+  }
 
   getBlogs(){
     return this.http.get<Blogpost>(this.ServerUrl + 'api/blogs').pipe(

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -9,9 +10,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  get isLoggedIn() { 
+    return this.authService.isLoggedIn(); 
   }
 
   setPageTitle(title: string) {

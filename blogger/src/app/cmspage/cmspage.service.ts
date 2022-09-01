@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Page } from './page';
 import { Contact } from './contact';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpBackend } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -17,8 +17,9 @@ export class CmspageService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient) { 
-
+  private http: HttpClient;
+  constructor(handler: HttpBackend) { 
+    this.http = new HttpClient(handler);
   }
 
   getPage(slug: string) {

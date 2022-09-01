@@ -16,6 +16,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 
+import { httpInterceptorProviders } from './http-interceptors/index';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     AppRoutingModule
   ],
-  providers: [Title],
-  bootstrap: [AppComponent]
+  providers: [Title, httpInterceptorProviders],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }
