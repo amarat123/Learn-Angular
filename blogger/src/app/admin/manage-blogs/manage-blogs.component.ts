@@ -21,16 +21,18 @@ export class ManageBlogsComponent implements OnInit {
   }
   getBlogs() {
     this.blogService.getBlogs().subscribe({
-      complete:() => {
-        (data: any) => this.blogs = data
+      
+      next: (response) => {
+        //(response: Blog) => this.blogs = response
+        this.blogs = response
       },
-      error:(e) => {
-        error => this.error = error
+      error:(err) => {
+        //error => this.error = err
+        this.error = err
       },
-      //next:(v) => {},
+      // complete:()  => {},
+      
     })  
-
-    console.log('blogs', this.blogs);
 
   }
 
