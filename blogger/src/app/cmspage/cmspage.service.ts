@@ -4,13 +4,15 @@ import { Contact } from './contact';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpBackend } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CmspageService {
 
-  ServerUrl = 'http://localhost/dev/blogger/';
+  ServerUrl = environment.baseUrl;
   errorData = {};
 
   httpOptions = {

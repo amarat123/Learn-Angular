@@ -3,13 +3,14 @@ import { Blog } from '../models/blog';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {  environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
 
-  serverUrl = 'http://localhost/dev/blogger/';
+  serverUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,32 @@ export class BlogService {
     return this.http.get<Blog>(this.serverUrl + 'api/adminBlogs').pipe(
       catchError(this.handleError)
     )
+  }
+
+  getBlog(id: number) {
+    return this.http.get<Blog>(this.serverUrl + 'api/adminBlog/' + id).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  createBlog(blog) {
+    return this.http.post<any>(this.serverUrl + 'api/createBlog', blog)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  updateBlog(blog, id: number) {
+    return this.http.post<any>(this.serverUrl + 'api/updateBlog/' + id, blog)
+    .pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  deleteBlog(id: number) {
+    return this.http.delete(this.serverUrl + 'api/deleteBlog/' + id).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {

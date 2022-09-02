@@ -4,13 +4,14 @@ import { Category } from './category';
 import { HttpClient, HttpErrorResponse, HttpBackend } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogpostService {
 
-  ServerUrl = 'http://localhost/dev/blogger/';
+  ServerUrl = environment.baseUrl;
   errorData = {};
 
   private http: HttpClient;

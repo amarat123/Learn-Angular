@@ -8,6 +8,7 @@ import { ManageCategoriesComponent } from './manage-categories/manage-categories
 import { ManagePagesComponent } from './manage-pages/manage-pages.component';
 
 import { AuthGuard } from '../auth/auth.guard';
+import { BlogFormComponent } from './blog-form/blog-form.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,8 @@ const routes: Routes = [
       path: '',
       children: [
         { path: 'blogs', component: ManageBlogsComponent },
+        { path: 'blogs/create', component: BlogFormComponent },
+        { path: 'blogs/edit/:id', component: BlogFormComponent },
         { path: 'categories', component: ManageCategoriesComponent },
         { path: 'pages', component: ManagePagesComponent },
         { path: '', component: AdminDashboardComponent }
