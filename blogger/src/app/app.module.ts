@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-
 
 import { AppRoutingModule } from './app-routing.module';
 import { BlogpostModule } from './blogpost/blogpost.module';
@@ -34,8 +32,6 @@ import { httpInterceptorProviders } from './http-interceptors/index';
     CmspageModule,
     AdminModule,
     AuthModule,
-
-    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [Title, httpInterceptorProviders],

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from '../contact';
 import { CmspageService } from '../cmspage.service'
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,7 +17,16 @@ export class ContactFormComponent implements OnInit {
   submitted = false;
   error: any = {};
 
-  signUpForm: FormGroup;
+  //contactForm: FormGroup;
+
+
+  public contactForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    gender: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.required]),
+    message: new FormControl(''),
+  });
 
   constructor(
     private fb: FormBuilder,
@@ -30,11 +39,56 @@ export class ContactFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get contactFormControl() {
+    return this.contactForm.controls;
+  }
+
+
+  changeCity(e: any) {
+    alert(e.target.value);
+
+    this.cityName?.setValue(e.target.value, {
+      onlySelf: true,
+    });
+  }
+  // Access formcontrols getter
+  get cityName() {
+    return this.contactForm.get('gender');
+  }
+
   onSubmit() {
-    this.submitted = true;
+
+    console.log(
+      this.contactForm.status
+      //this.contactForm.controls.name.value,
+    );  
+      
+    
+    if (this.contactForm.valid) {
+      this.submitted = true;
+
+      return this.cmspageService.contactForm(this.contactForm.value).subscribe({
+        next : (res) => {
+          this.model = res
+        },
+        error : (err) => {
+          this.error = err
+        },
+        complete : () => {},
+      });
+
+      console.log('this.model, this.model');
+
+    }else{
+      return false;
+    }
+    
+
+    //return false;  
 
 
-    this.signUpForm = this.fb.group({
+    /*
+    this.contactForm = this.fb.group({
       first_name: ['', [
           Validators.required,
           Validators.maxLength(100)
@@ -46,22 +100,13 @@ export class ContactFormComponent implements OnInit {
           Validators.minLength(3),
           Validators.email
       ]
-      ],*/
+      ],*
       
     });
+    */
 
-
-
-    return this.cmspageService.contactForm(this.model).subscribe({
-        next : (res) => {
-          this.model = res
-        },
-        error : (err) => {
-          this.error = err
-        },
-        complete : () => {},
-      }
-    );
+    
+   
   }
 
   gotoHome(){

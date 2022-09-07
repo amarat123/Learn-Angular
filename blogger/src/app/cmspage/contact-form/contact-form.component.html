@@ -1,29 +1,50 @@
 <section class="cmspage mtb-40">
   <div class="container">
-    <div class="page-desc">
+    <div class="page-desc" [hidden]="submitted">
       <div class="row justify-content-center">
         <div class="col-md-8">
           <h1>Contact</h1>
-          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <input type="text" name="name" id="name" class="form-control" placeholder="Name" formControlName="name">
-              <div *ngIf="signUpForm.controls['name'].invalid && (signUpForm.controls['name'].dirty || signUpForm.controls['name'].touched)" class="alert">
-                <div *ngIf="signUpForm.controls['name'].errors.required">
-                Please enter Name
-              </div>
+              <input type="text" name="name" id="name" class="form-control" placeholder="Name" formControlName="name" required>
+              <span class="text-danger"
+                  *ngIf="(contactFormControl.name.touched || submitted) && contactFormControl.name.errors?.required">
+                  Name is required
+              </span>
             </div>
-            </div>
-            <!--
+            
             <div class="form-group">
-              <input type="text" name="email" class="form-control" placeholder="E-Mail">
+              <input type="text" name="email" class="form-control" formControlName="email" placeholder="E-Mail">
+              <span class="text-danger"
+                  *ngIf="(contactFormControl.email.touched || submitted) && contactFormControl.email.errors?.required">
+                  Email is required
+              </span>
+            </div>
+
+            <div class="form-group">
+              <!--<input type="text" name="gender" class="form-control" formControlName="gender" placeholder="Gender">-->
+              <select class="form-control"  (change)="changeCity($event)" formControlName="cityName">
+                <option value="">Choose Gender</option>
+                <option> Male</option>
+                <option> Female </option>
+        </select>
+              <span class="text-danger"
+                  *ngIf="(contactFormControl.gender.touched || submitted) && contactFormControl.gender.errors?.required">
+                  Gender is required
+              </span>
+            </div>
+
+            <div class="form-group">
+              <input type="text" name="phone" class="form-control" formControlName="phone" placeholder="Phone">
+              <span class="text-danger"
+                  *ngIf="(contactFormControl.phone.touched || submitted) && contactFormControl.phone.errors?.required">
+                  Phone is required
+              </span>
             </div>
             <div class="form-group">
-              <input type="text" name="phone" class="form-control" placeholder="Phone">
+              <textarea name="message" rows="5" class="form-control" formControlName="message" placeholder="Message"></textarea>
             </div>
-            <div class="form-group">
-              <textarea name="message" rows="5" class="form-control" placeholder="Message"></textarea>
-            </div>
-            -->
+            
             <div class="form-group">
               <button class="btn btn-success">Send Message</button>
             </div>
@@ -33,12 +54,12 @@
     </div>
 
     <div [hidden]="!submitted" class="contact-message">
-      <div *ngIf="model.id" class="contact-success">
+      <!--<div *ngIf="model.id" class="contact-success">-->
         <h2 class="success">Success!</h2>
         <h4>Contact form has been successfully submitted.</h4>
         <br />
         <button (click)="gotoHome()" class="btn btn-info">Go to Home</button>
-      </div>
+      <!--</div>-->
     </div>
 
   </div>
