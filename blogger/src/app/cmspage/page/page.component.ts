@@ -39,10 +39,21 @@ export class PageComponent implements OnInit {
       error => this.error = error
     );
     */
-    this.pageSlug  = this.router.url.split('/').pop();  
-    this.cmspageService.getPage(this.pageSlug).subscribe( 
-      (data: Page) => this.page = data
-    )
+
+    this.pageSlug = this.route.snapshot.paramMap.get('slug');
+    alert(this.pageSlug);
+    this.cmspageService.getPage(this.pageSlug).subscribe({
+      //(data: Page) => this.page = data
+
+      next: (res) => {
+        this.page = res
+      },
+      error: (err) => {
+        this.error = err
+      },
+      complete: () => {}
+
+    })
 
       console.log('page_detail',this.page)
 

@@ -40,7 +40,7 @@ import { Component, OnInit } from '@angular/core';
           )
         );
         */
-        this.blogId  = this.router.url.split('/').pop();
+        this.blogId = this.route.snapshot.paramMap.get('id');
 
         this.blogpostService.getBlog(this.blogId).subscribe( 
           (data: Blogpost) => this.blog$ = data
