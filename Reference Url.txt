@@ -1,1 +1,4 @@
 https://github.com/AnkitSharma-007/angular-forms-validation
+
+
+https://www.simplilearn.com/tutorials/angular-tutorial/angular-pipes
