@@ -12,8 +12,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
-    EmailEditorModule, 
+    EmailEditorModule
   ],
   providers: [EmailEditorModule],
   bootstrap: [AppComponent]
